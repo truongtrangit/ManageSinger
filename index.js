@@ -63,6 +63,7 @@ app.get("/remove/:id", (req, res) => {
 })
 
 
+// process.env.PORT là PORT mà heroku sẽ cấp cho server để chạy
 app.listen(process.env.PORT || PORT, () => {
     console.log("Server is running at port " + PORT);
 })
