@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Manage Singer</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+        integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(() => {
+            $("#addbtn").click(() => {
+                document.write(`<h1 style="text-align:center">Bạn đang được chuyển đến trang thêm mới ca sĩ</h1>`);
+                setTimeout('window.location = "/add"', 500);
+            })
+        })
+    </script>
+</head>
+
+<body>
+
+    <div class="container">
+        <hr>
+        <h1 style="text-align: center">Manage Singer</h1>
+        <hr>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Tên</th>
+                    <th>Hình ảnh</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%
+                if(!singerList){ %>
+                <h1 class="text-center">Hiện tại không có ca sĩ nào trong danh sách</h1>
+                <%}
+                else{
+                    singerList.forEach((singer, index) => {
+                        %>
+                <tr>
+                    <td><%= index + 1 %></td>
+                    <td>
+                        <h4><%= singer.name %></h4>
+                    </td>
+                    <td><img src=<%= singer.image %> alt="" style="width: 80px; height: 80px;"></td>
+                    <td><a href="/edit/<%= singer.id %>">Chỉnh sửa</a> | <a href="/remove/<%= singer.id %>"
+                            onclick="return confirm('Bạn có chắc là sẽ xóa ca sĩ này không?')">Xóa</a>
+                    </td>
+                </tr>
+                <%
+                    })
+                %>
+
+                <%} %>
+
+            </tbody>
+
+
+        </table>
+
+        <div class="row">
+            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+
+                <button type="button" class="btn btn-large btn-block btn-success" id="addbtn">Thêm</button>
+
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
